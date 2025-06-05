@@ -2,14 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class MercanciaScripts : MonoBehaviour
 {
+    public float cost;
+    public MoneyManager moneyManager;
 
-    private void OnCollisionEnter(Collision collision)
+    private void Start()
+    {
+        moneyManager = FindObjectOfType<MoneyManager>();
+    }
+    void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.name == "Player")
         {
-            Destroy(gameObject);
+         moneyManager.UpdateMoney(cost);
+         Destroy(gameObject);
+            
         }
 
     }
